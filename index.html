@@ -22,6 +22,7 @@
             background-position: center center; /* Centers the image */
             background-repeat: no-repeat; /* Avoid repeating the background image */
             overflow: hidden; /* Prevent scrollbars */
+            background-attachment: fixed; /* Fix the background during scroll */
         }
 
         /* Center the content */
@@ -81,6 +82,7 @@
                 document.body.style.backgroundSize = 'cover';  // Cover the whole screen
                 document.body.style.backgroundPosition = 'center center';  // Center the background image
                 document.body.style.backgroundRepeat = 'no-repeat'; // Prevent tiling the background
+                document.body.style.backgroundAttachment = 'fixed'; // Fix the background during scroll
                 isPlaying = true;
             } else {
                 audioPlayer.pause();
