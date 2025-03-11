@@ -10,6 +10,7 @@
         body, html {
             height: 100%;
             margin: 0;
+            padding: 0; /* Ensure no margin or padding affecting full screen */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,6 +21,7 @@
             background-size: cover; /* Ensures the image covers the screen */
             background-position: center center; /* Centers the image */
             background-repeat: no-repeat; /* Avoid repeating the background image */
+            overflow: hidden; /* Prevent scrollbars */
         }
 
         /* Center the content */
