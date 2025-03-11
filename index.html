@@ -12,11 +12,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('meltmegif.gif'); /* Replace with the correct path to your GIF */
-            background-size: cover;
-            background-position: center;
+            background-color: black; /* Initial background */
             color: white;
             font-family: Arial, sans-serif;
+            transition: background 1s ease-in-out;
         }
 
         /* Center the content */
@@ -58,21 +57,28 @@
         <button class="play-button" onclick="toggleAudio()">&#9658;</button>
 
         <!-- Audio Player -->
-        <audio id="audioPlayer" src="audio.mp3" preload="auto"></audio>
+        <audio id="audioPlayer" src="zombie.mp3" preload="auto"></audio>
     </div>
 
     <script>
         const audioPlayer = document.getElementById('audioPlayer');
         const playButton = document.querySelector('.play-button');
+        let isPlaying = false; // Keep track of the playing state
 
         // Function to toggle play and pause
         function toggleAudio() {
             if (audioPlayer.paused) {
                 audioPlayer.play();
                 playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
+                // Start background animation when audio plays
+                document.body.style.backgroundImage = 'url("meltmegif.gif")';
+                isPlaying = true;
             } else {
                 audioPlayer.pause();
                 playButton.innerHTML = '&#9658;'; // Change button to play
+                // Stop background animation when audio pauses
+                document.body.style.backgroundImage = 'none';
+                isPlaying = false;
             }
         }
     </script>
