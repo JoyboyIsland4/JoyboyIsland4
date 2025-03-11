@@ -5,21 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TREASURE</title>
     <style>
-        /* Center the content */
+        /* Full height and background GIF */
         body, html {
             height: 100%;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #000; /* Black background */
+            background-image: url('meltmegif.gif'); /* Replace with the correct path to your GIF */
+            background-size: cover;
+            background-position: center;
             color: white;
             font-family: Arial, sans-serif;
         }
 
-        /* Styling for the play button */
+        /* Center the content */
         .player-container {
             text-align: center;
+            z-index: 1; /* Ensure content appears on top of the background */
         }
 
         .play-button {
@@ -29,6 +32,7 @@
             border: none;
             cursor: pointer;
             padding: 20px;
+            z-index: 2;
         }
 
         /* Style for the audio player */
@@ -36,10 +40,12 @@
             width: 600px;
             height: 100px;
             margin-top: 20px;
+            z-index: 2;
         }
 
         h1 {
             font-size: 48px;
+            z-index: 2;
         }
     </style>
 </head>
