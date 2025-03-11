@@ -17,9 +17,24 @@
             color: white;
             font-family: Arial, sans-serif;
             transition: background 1s ease-in-out;
-            background-size: cover; /* Ensure the background image covers the entire screen */
-            background-position: center; /* Center the background */
-            background-repeat: no-repeat; /* Prevent repeating the background */
+            width: 100vw; /* Ensure full viewport width */
+            height: 100vh; /* Ensure full viewport height */
+        }
+
+        /* Full-screen background image */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('MELTME.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1; /* Keep it in the background */
+            opacity: 0; /* Initially hidden */
+            transition: opacity 1s ease-in-out;
         }
 
         /* Center the content */
@@ -54,6 +69,9 @@
 </head>
 <body>
 
+    <!-- Full-screen background container -->
+    <div class="background"></div>
+
     <div class="player-container">
         <h1>TREASURE</h1>
 
@@ -67,6 +85,7 @@
     <script>
         const audioPlayer = document.getElementById('audioPlayer');
         const playButton = document.querySelector('.play-button');
+        const background = document.querySelector('.background');
         let isPlaying = false; // Keep track of the playing state
 
         // Function to toggle play and pause
@@ -75,23 +94,20 @@
                 audioPlayer.play();
                 playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
                 // Start background animation when audio plays
-                document.body.style.backgroundImage = 'url("MELTME.gif")';
-                document.body.style.backgroundSize = "cover"; // Ensure it covers the entire page
-                document.body.style.backgroundPosition = "center"; // Center the background
-                document.body.style.backgroundRepeat = "no-repeat"; // Ensure no repeat
+                background.style.opacity = 1; // Make the background visible
                 isPlaying = true;
             } else {
                 audioPlayer.pause();
                 playButton.innerHTML = '&#9658;'; // Change button to play
                 // Stop background animation when audio pauses
-                document.body.style.backgroundImage = 'none';
+                background.style.opacity = 0; // Hide the background
                 isPlaying = false;
             }
         }
 
         // Reset the background when audio ends
         audioPlayer.onended = function() {
-            document.body.style.backgroundImage = 'none';
+            background.style.opacity = 0; // Hide the background when audio ends
             playButton.innerHTML = '&#9658;'; // Reset button to play
             isPlaying = false;
         }
