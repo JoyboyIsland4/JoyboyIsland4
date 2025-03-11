@@ -6,18 +6,18 @@
     <meta http-equiv="Permissions-Policy" content="geolocation=(self), microphone=(self)">
     <title>TREASURE</title>
     <style>
-        /* Full height and background GIF */
+        /* Ensure the body and html take up the full height */
         body, html {
             height: 100%;
             margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black; /* Initial background */
+            background-color: black; /* Set initial background to black */
             color: white;
             font-family: Arial, sans-serif;
-            transition: background 1s ease-in-out;
-            background-size: cover;
         }
 
         /* Center the content */
@@ -26,6 +26,7 @@
             z-index: 1; /* Ensure content appears on top of the background */
         }
 
+        /* Play button style */
         .play-button {
             font-size: 80px;
             color: #FF0000;
@@ -36,7 +37,7 @@
             z-index: 2;
         }
 
-        /* Style for the audio player */
+        /* Audio player style */
         audio {
             width: 600px;
             height: 100px;
@@ -48,9 +49,26 @@
             font-size: 48px;
             z-index: 2;
         }
+
+        /* Fullscreen background GIF */
+        .background {
+            position: fixed; /* Fix the background to the screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('MELTME2.gif'); /* Path to your GIF */
+            background-size: contain; /* Maintain aspect ratio */
+            background-position: center; /* Center the GIF */
+            background-repeat: no-repeat; /* Avoid tiling */
+            z-index: 0; /* Ensure it stays behind the content */
+        }
     </style>
 </head>
 <body>
+
+    <!-- Background GIF -->
+    <div class="background"></div>
 
     <div class="player-container">
         <h1>TREASURE</h1>
@@ -72,27 +90,22 @@
             if (audioPlayer.paused) {
                 audioPlayer.play();
                 playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
-                // Test with a static image first to make sure background is working
-                // document.body.style.backgroundImage = 'url("meltme.gif")'; // Try this after testing with a static image
-                document.body.style.backgroundImage = 'url("MELTME2gif.gif")'; // Test with a simple static image
-                document.body.style.backgroundSize = "cover"; // Ensure it covers the entire page
-                console.log('Audio started, setting background image');
+                // Start background animation when audio plays
+                document.querySelector('.background').style.backgroundImage = 'url("MELTME2.gif")';  // Ensure correct path to GIF
                 isPlaying = true;
             } else {
                 audioPlayer.pause();
                 playButton.innerHTML = '&#9658;'; // Change button to play
                 // Stop background animation when audio pauses
-                document.body.style.backgroundImage = 'none';
-                console.log('Audio paused, removing background image');
+                document.querySelector('.background').style.backgroundImage = 'none';
                 isPlaying = false;
             }
         }
 
         // Reset the background when audio ends
         audioPlayer.onended = function() {
-            document.body.style.backgroundImage = 'none';
+            document.querySelector('.background').style.backgroundImage = 'none';
             playButton.innerHTML = '&#9658;'; // Reset button to play
-            console.log('Audio ended, resetting background');
             isPlaying = false;
         }
     </script>
