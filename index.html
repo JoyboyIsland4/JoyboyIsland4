@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(self), microphone=(self)">
     <title>TREASURE</title>
     <style>
         /* Full height and background GIF */
         body, html {
             height: 100%;
             margin: 0;
-            padding: 0;
+            padding: 0; /* Ensure no margin or padding affecting full screen */
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: black; /* Initial background color */
             color: white;
             font-family: Arial, sans-serif;
-            background-image: url('MELTME2gif.gif'); /* Ensure correct path to GIF */
-            background-size: cover;  /* Ensures the image covers the screen */
-            background-position: center center; /* Centers the image */
+            transition: background 1s ease-in-out;
+            background-size: contain;  /* Fit the entire image without distortion */
+            background-position: center center;  /* Center the background image */
             background-repeat: no-repeat; /* Prevent tiling the background */
             overflow: hidden; /* Prevent scrollbars */
         }
@@ -75,15 +76,27 @@
             if (audioPlayer.paused) {
                 audioPlayer.play();
                 playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
+                // Start background animation when audio plays
+                document.body.style.backgroundImage = 'url("MELTME2gif.gif")';  // Ensure correct path to GIF
+                document.body.style.backgroundSize = 'contain';  // Fit the entire image without distortion
+                document.body.style.backgroundPosition = 'center center';  // Center the background image
+                document.body.style.backgroundRepeat = 'no-repeat'; // Prevent tiling the background
+                document.body.style.backgroundAttachment = 'fixed'; // Fix the background during scroll
+                isPlaying = true;
             } else {
                 audioPlayer.pause();
                 playButton.innerHTML = '&#9658;'; // Change button to play
+                // Stop background animation when audio pauses
+                document.body.style.backgroundImage = 'none';
+                isPlaying = false;
             }
         }
 
         // Reset the background when audio ends
         audioPlayer.onended = function() {
+            document.body.style.backgroundImage = 'none';
             playButton.innerHTML = '&#9658;'; // Reset button to play
+            isPlaying = false;
         }
     </script>
 
