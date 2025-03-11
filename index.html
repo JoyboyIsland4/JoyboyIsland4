@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TREASURE</title>
+    <style>
+        /* Center the content */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* Black background */
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Styling for the play button */
+        .player-container {
+            text-align: center;
+        }
+
+        .play-button {
+            font-size: 80px;
+            color: #FF0000;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 20px;
+        }
+
+        /* Style for the audio player */
+        audio {
+            width: 600px;
+            height: 100px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-container">
+        <h1>TREASURE</h1>
+
+        <!-- Play Button -->
+        <button class="play-button" onclick="toggleAudio()">&#9658;</button>
+
+        <!-- Audio Player -->
+        <audio id="audioPlayer" src="audio.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playButton = document.querySelector('.play-button');
+
+        // Function to toggle play and pause
+        function toggleAudio() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
+            } else {
+                audioPlayer.pause();
+                playButton.innerHTML = '&#9658;'; // Change button to play
+            }
+        }
+    </script>
+
+</body>
+</html>
