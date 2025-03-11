@@ -13,28 +13,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black; /* Initial background */
+            background-color: black; /* Initial background color */
             color: white;
             font-family: Arial, sans-serif;
             transition: background 1s ease-in-out;
-            width: 100vw; /* Ensure full viewport width */
-            height: 100vh; /* Ensure full viewport height */
-        }
-
-        /* Full-screen background image */
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('MELTME.gif');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -1; /* Keep it in the background */
-            opacity: 0; /* Initially hidden */
-            transition: opacity 1s ease-in-out;
+            background-size: cover; /* Ensures the image covers the screen */
+            background-position: center center; /* Centers the image */
+            background-repeat: no-repeat; /* Avoid repeating the background image */
         }
 
         /* Center the content */
@@ -69,9 +54,6 @@
 </head>
 <body>
 
-    <!-- Full-screen background container -->
-    <div class="background"></div>
-
     <div class="player-container">
         <h1>TREASURE</h1>
 
@@ -85,7 +67,6 @@
     <script>
         const audioPlayer = document.getElementById('audioPlayer');
         const playButton = document.querySelector('.play-button');
-        const background = document.querySelector('.background');
         let isPlaying = false; // Keep track of the playing state
 
         // Function to toggle play and pause
@@ -94,20 +75,22 @@
                 audioPlayer.play();
                 playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
                 // Start background animation when audio plays
-                background.style.opacity = 1; // Make the background visible
+                document.body.style.backgroundImage = 'url("MELTME.gif")';  // Ensure correct path
+                document.body.style.backgroundSize = 'cover';  // Cover the whole screen
+                document.body.style.backgroundPosition = 'center center';  // Center the background image
                 isPlaying = true;
             } else {
                 audioPlayer.pause();
                 playButton.innerHTML = '&#9658;'; // Change button to play
                 // Stop background animation when audio pauses
-                background.style.opacity = 0; // Hide the background
+                document.body.style.backgroundImage = 'none';
                 isPlaying = false;
             }
         }
 
         // Reset the background when audio ends
         audioPlayer.onended = function() {
-            background.style.opacity = 0; // Hide the background when audio ends
+            document.body.style.backgroundImage = 'none';
             playButton.innerHTML = '&#9658;'; // Reset button to play
             isPlaying = false;
         }
