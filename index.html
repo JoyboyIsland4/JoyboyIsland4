@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(self), microphone=(self)">
     <title>TREASURE</title>
     <style>
         /* Full height and background GIF */
@@ -16,6 +17,7 @@
             color: white;
             font-family: Arial, sans-serif;
             transition: background 1s ease-in-out;
+            background-size: cover;
         }
 
         /* Center the content */
@@ -72,6 +74,7 @@
                 playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
                 // Start background animation when audio plays
                 document.body.style.backgroundImage = 'url("meltmegif.gif")';
+                document.body.style.backgroundSize = "cover"; // Ensure it covers the entire page
                 isPlaying = true;
             } else {
                 audioPlayer.pause();
@@ -80,6 +83,13 @@
                 document.body.style.backgroundImage = 'none';
                 isPlaying = false;
             }
+        }
+
+        // Reset the background when audio ends
+        audioPlayer.onended = function() {
+            document.body.style.backgroundImage = 'none';
+            playButton.innerHTML = '&#9658;'; // Reset button to play
+            isPlaying = false;
         }
     </script>
 
