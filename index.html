@@ -26,6 +26,7 @@
 
         /* Center the content */
         .player-container {
+            position: relative; /* Make the container position relative */
             text-align: center;
             z-index: 1; /* Ensure content appears on top of the background */
         }
@@ -38,6 +39,10 @@
             cursor: pointer;
             padding: 20px;
             z-index: 2;
+            position: absolute; /* Absolute position to prevent interference */
+            top: 50%; /* Center the button vertically */
+            left: 50%; /* Center the button horizontally */
+            transform: translate(-50%, -50%); /* Exactly center the button */
         }
 
         /* Style for the audio player */
