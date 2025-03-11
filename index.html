@@ -18,19 +18,21 @@
             color: white;
             font-family: Arial, sans-serif;
             transition: background 1s ease-in-out;
-            background-size: cover;  /* Ensure the image fully covers the screen */
+            background-size: cover;  /* Ensures the image fully covers the screen */
             background-position: center center;  /* Center the background image */
             background-repeat: no-repeat; /* Prevent tiling the background */
             overflow: hidden; /* Prevent scrollbars */
+            height: 100vh;  /* Full viewport height */
         }
 
         /* Center the content */
         .player-container {
-            position: relative; /* Make the container position relative */
+            position: relative; /* Position relative for button */
             text-align: center;
-            z-index: 1; /* Ensure content appears on top of the background */
+            z-index: 2; /* Ensure content appears on top of the background */
         }
 
+        /* Play button centered */
         .play-button {
             font-size: 80px;
             color: #FF0000;
@@ -39,10 +41,10 @@
             cursor: pointer;
             padding: 20px;
             z-index: 2;
-            position: absolute; /* Absolute position to prevent interference */
-            top: 50%; /* Center the button vertically */
-            left: 50%; /* Center the button horizontally */
-            transform: translate(-50%, -50%); /* Exactly center the button */
+            position: absolute;
+            top: 50%;  /* Center vertically */
+            left: 50%;  /* Center horizontally */
+            transform: translate(-50%, -50%);  /* Exact centering */
         }
 
         /* Style for the audio player */
@@ -86,6 +88,7 @@
                 document.body.style.backgroundSize = 'cover';  // Cover the whole screen
                 document.body.style.backgroundPosition = 'center center';  // Center the background image
                 document.body.style.backgroundRepeat = 'no-repeat'; // Prevent tiling the background
+                document.body.style.backgroundAttachment = 'fixed'; // Fix the background during scroll
                 isPlaying = true;
             } else {
                 audioPlayer.pause();
