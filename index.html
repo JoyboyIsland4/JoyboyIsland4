@@ -10,29 +10,22 @@
         body, html {
             height: 100%;
             margin: 0;
-            padding: 0; /* Ensure no margin or padding affecting full screen */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black; /* Initial background color */
+            background-color: black; /* Initial background */
             color: white;
             font-family: Arial, sans-serif;
             transition: background 1s ease-in-out;
-            background-size: cover;  /* Ensures the image fully covers the screen */
-            background-position: center center;  /* Center the background image */
-            background-repeat: no-repeat; /* Prevent tiling the background */
-            overflow: hidden; /* Prevent scrollbars */
-            height: 100vh;  /* Full viewport height */
+            background-size: cover;
         }
 
         /* Center the content */
         .player-container {
-            position: relative; /* Position relative for button */
             text-align: center;
-            z-index: 2; /* Ensure content appears on top of the background */
+            z-index: 1; /* Ensure content appears on top of the background */
         }
 
-        /* Play button centered */
         .play-button {
             font-size: 80px;
             color: #FF0000;
@@ -41,10 +34,6 @@
             cursor: pointer;
             padding: 20px;
             z-index: 2;
-            position: absolute;
-            top: 50%;  /* Center vertically */
-            left: 50%;  /* Center horizontally */
-            transform: translate(-50%, -50%);  /* Exact centering */
         }
 
         /* Style for the audio player */
@@ -83,18 +72,18 @@
             if (audioPlayer.paused) {
                 audioPlayer.play();
                 playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
-                // Start background animation when audio plays
-                document.body.style.backgroundImage = 'url("MELTME2gif.gif")';  // Ensure correct path to GIF
-                document.body.style.backgroundSize = 'cover';  // Cover the whole screen
-                document.body.style.backgroundPosition = 'center center';  // Center the background image
-                document.body.style.backgroundRepeat = 'no-repeat'; // Prevent tiling the background
-                document.body.style.backgroundAttachment = 'fixed'; // Fix the background during scroll
+                // Test with a static image first to make sure background is working
+                // document.body.style.backgroundImage = 'url("meltme.gif")'; // Try this after testing with a static image
+                document.body.style.backgroundImage = 'url("https://via.placeholder.com/150")'; // Test with a simple static image
+                document.body.style.backgroundSize = "cover"; // Ensure it covers the entire page
+                console.log('Audio started, setting background image');
                 isPlaying = true;
             } else {
                 audioPlayer.pause();
                 playButton.innerHTML = '&#9658;'; // Change button to play
                 // Stop background animation when audio pauses
                 document.body.style.backgroundImage = 'none';
+                console.log('Audio paused, removing background image');
                 isPlaying = false;
             }
         }
@@ -103,6 +92,7 @@
         audioPlayer.onended = function() {
             document.body.style.backgroundImage = 'none';
             playButton.innerHTML = '&#9658;'; // Reset button to play
+            console.log('Audio ended, resetting background');
             isPlaying = false;
         }
     </script>
