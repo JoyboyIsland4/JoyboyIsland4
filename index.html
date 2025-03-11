@@ -18,7 +18,7 @@
             color: white;
             font-family: Arial, sans-serif;
             transition: background 1s ease-in-out;
-            background-size: contain;  /* Fit the entire image without distortion */
+            background-size: cover;  /* Ensure the image fully covers the screen */
             background-position: center center;  /* Center the background image */
             background-repeat: no-repeat; /* Prevent tiling the background */
             overflow: hidden; /* Prevent scrollbars */
@@ -78,7 +78,7 @@
                 playButton.innerHTML = '&#10074;&#10074;'; // Change button to pause
                 // Start background animation when audio plays
                 document.body.style.backgroundImage = 'url("MELTME2gif.gif")';  // Ensure correct path to GIF
-                document.body.style.backgroundSize = 'contain';  // Fit the entire image without distortion
+                document.body.style.backgroundSize = 'cover';  // Cover the whole screen
                 document.body.style.backgroundPosition = 'center center';  // Center the background image
                 document.body.style.backgroundRepeat = 'no-repeat'; // Prevent tiling the background
                 document.body.style.backgroundAttachment = 'fixed'; // Fix the background during scroll
